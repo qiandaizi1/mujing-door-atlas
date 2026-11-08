@@ -42,6 +42,7 @@
 @media(max-width:730px){.mini-product .door-slot{height:205px}.feature-placeholder{height:280px}.slot-label{font-size:12px}.hero-photos img{max-width:48%}}
 /* 客户展示版不显示设计理念、工艺说明和内部文件说明。 */
 .intro-copy p,.feature-text p,.feature-list{display:none!important}
+@media(max-width:730px){#toc-side{display:flex;gap:5px}.reader-aside{align-items:center}.book-host{margin-top:8px}}
 </style>
 </head>
 <body>
@@ -90,7 +91,7 @@ SERIES.forEach((s,i)=>{
 let pp=PRODUCTS.filter(p=>p.series===s.id),star=pp[0];
 appendPage(`<div class="intro-page">${star.real?`<img src="${star.photo}" alt="${esc(s.title)}设计效果图">`:`<div class="intro-pending">静待填充<br>COMING SOON</div>`}<div class="intro-copy"><div class="tiny" style="color:#c8b182">COLLECTION 0${i+1}</div><div class="intro-number">0${i+1}</div><h2 class="serif">${esc(s.title)}</h2><div class="tiny" style="color:#d0c0a2">${esc(s.en)}</div><div class="intro-rule"></div><p>${esc(s.desc)}</p><div class="tiny" style="color:#c5ae89;margin-top:20px">P.${pad(s.start)}—${pad(s.start+3)}</div></div></div>`);
 appendPage(`<div class="page-inner"><div class="book-kicker">0${i+1} / ${esc(s.en)}</div><h2 class="book-h">${esc(s.title)} <span style="font-size:12px;letter-spacing:0;color:#a68e6b">01—02</span></h2><p class="book-p">${esc(s.sub)}</p><div class="mini-gallery">${pp.slice(0,2).map(productCard).join('')}</div></div>`);
-appendPage(`<div class="page-inner"><div class="book-kicker">0${i+1} / ${esc(s.en)}</div><h2 class="book-h">${esc(s.title)} <span style="font-size:12px;letter-spacing:0;color:#a68e6b">03—04</span></h2><p class="book-p">木门艺术图案精选 · 单色线条工艺示意</p><div class="mini-gallery">${pp.slice(2).map(productCard).join('')}</div></div>`);
+appendPage(`<div class="page-inner"><div class="book-kicker">0${i+1} / ${esc(s.en)}</div><h2 class="book-h">${esc(s.title)} <span style="font-size:12px;letter-spacing:0;color:#a68e6b">03—04</span></h2><p class="book-p">木门艺术图案精选 · 门型效果图展示</p><div class="mini-gallery">${pp.slice(2).map(productCard).join('')}</div></div>`);
 appendPage(`<div class="page-inner"><div class="feature-head"><div><div class="book-kicker">${star.real?'FEATURED DESIGN':'FUTURE COLLECTION'} / 0${i+1}</div><h2 class="book-h" style="margin-bottom:4px">${star.real?'主推款鉴赏':'系列预留展示'}</h2></div><span style="font:12px serif;color:#b3976c">${star.real?star.id:'静待填充'}</span></div><div class="feature-wrap">${star.real?`<img src="${star.photo}" alt="${esc(star.name)}设计效果图">`:`<div class="feature-placeholder">${slotMarkup('feature-slot')}</div>`}<div class="feature-text"><div class="tiny gold">${star.real?'CURATED SELECTION':'COMING SOON'}</div><b class="serif">${star.real?esc(star.name):'静待填充'}</b><p>${star.real?`${esc(s.sub)}。以木纹为底、线条为笔，呈现空间的雅致氛围。`:'本系列尚未上架任何实际图案。保留本页用于展示画册结构，后续有真实作品后再更新。'}</p>${star.real?`<ul class="feature-list"><li>系列：${esc(s.title)}</li><li>图案：单色金线设计效果</li><li>工艺：待打样确认</li></ul><button style="margin-top:7px;border:1px solid #dac9ad;background:transparent;padding:8px 11px;font-size:11px;color:#886b41" onclick="openDetail('${star.id}')">查看款式详情 →</button>`:`<span class="availability-note">暂无实图 · 不可选款</span>`}</div></div></div>`);
 });
 appendPage(`<div class="page-inner"><div class="book-kicker">CUSTOM SERVICES / A</div><h2 class="book-h">定制与选款流程</h2><p class="book-p">从选定一款门上图案，到正式加工，每一步都有对应编号与设计文件。</p><table class="spec-table"><tr><td>01 / 选款</td><td>按场景选择系列，记下图案编号。</td></tr><tr><td>02 / 门型</td><td>确认木门素板、门板结构、图案所在区域。</td></tr><tr><td>03 / 颜色</td><td>确认金色、黑色或其他单色工艺效果。</td></tr><tr><td>04 / 打样</td><td>核查线宽、附着力、工艺位置和实际效果。</td></tr><tr><td>05 / 制作</td><td>按对应 CDR / 矢量源文件进行生产。</td></tr></table><p class="toc-note">本页属于演示内容，正式投产以厂家工艺标准和实物打样为准。</p></div>`);
@@ -146,5 +147,5 @@ TOC[8][0]='预留页面';
 renderOverview();renderTocSidebar();buildPages();applySixDoorsOnly();renderGallery();startBook();
 </script>
 <!-- Third-party flip animation via open-source StPageFlip (MIT). Built-in fallback remains usable without network. -->
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js" onload="if(activeView==='reader'&&!pageFlip)startBook()" onerror="console.info('Flip engine unavailable; fallback navigation active')"></script>
+<script src="assets/page-flip.browser.js" onload="if(activeView==='reader'&&!pageFlip)startBook()" onerror="console.info('Flip engine unavailable; fallback navigation active')"></script>
 </body></html>
